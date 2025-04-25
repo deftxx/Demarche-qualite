@@ -24,7 +24,7 @@ st.set_page_config(
     page_icon="📊",
     layout="centered",
     menu_items={
-        'A propos': """
+        'About': """
         © 2025 Étudiant M1 Mécanique, Université de Lorraine
 
         Technologies utilisées : Python, Streamlit, Plotly, Pandas

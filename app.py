@@ -4,6 +4,12 @@ import os
 from modules.learning import display_learning_module
 from modules.pareto import pareto_tool
 from modules.five_whys import five_whys_tool
+# -*- coding: utf‑8 -*-
+import streamlit as st
+import os
+from modules.learning import display_learning_module
+from modules.pareto import pareto_tool
+from modules.five_whys import five_whys_tool
 from modules.histogram import histogram_tool
 from modules.ishikawa import ishikawa_tool
 from modules.flowchart import flowchart_tool
@@ -12,7 +18,21 @@ from modules.qqoqccp import qqoqccp_tool
 from modules.correlation import correlation_tool
 from utils.translation import initialize_translation
 
-# 🔒 Hide GitHub link, footer, and Streamlit branding
+# ✅ MUST BE FIRST Streamlit command
+st.set_page_config(
+    page_title="Outils Qualité",
+    page_icon="📊",
+    layout="wide",
+    menu_items={
+        'About': """
+        © 2025 Étudiant M1 Mécanique, Université de Lorraine
+
+        Technologies utilisées : Python, Streamlit, Plotly, Pandas
+        """
+    }
+)
+
+# ✅ THEN you can safely hide UI elements
 st.markdown(
     """
     <style>
@@ -24,19 +44,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 🧭 Page configuration
-st.set_page_config(
-    page_title="Outils Qualité",
-    page_icon="📊",
-    layout="wide",  # was "centered", changed for better visual space
-    menu_items={
-        'About': """
-        © 2025 Étudiant M1 Mécanique, Université de Lorraine
-
-        Technologies utilisées : Python, Streamlit, Plotly, Pandas
-        """
-    }
-)
 
 # 🌐 Initialize translation
 initialize_translation()

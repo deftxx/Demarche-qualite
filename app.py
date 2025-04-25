@@ -37,7 +37,7 @@ st.markdown(
     """
     <style>
     a[href*="github.com"] {display: none;}
-    a[href*="https://share.streamlit.io/"] {display: none;}
+    a[href*="streamlit.io"] {display: none;}
     footer {visibility: hidden;}
     </style>
     """,

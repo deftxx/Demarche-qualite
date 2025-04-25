@@ -1,0 +1,92 @@
+Curated Quality Tools: Collection of essential tools for quality analysis and improvement
+
+Interactive Interface: Easy-to-use interfaces with visualization capabilities
+
+Pre-loaded Examples: Sample data for each tool to help you get started
+
+Bilingual Labels: Tool names in both French and English
+
+Export Options: Save your analyses in various formats for reporting
+
+Navigate to Learning Resources to learn core quality concepts
+
+Explore the Quality Tools section to access interactive tools
+
+Each tool includes a sample dataset for reference
+
+Create your own analyses by manual entry
+
+Export your results for presentations and reportsDiagramme de Pareto: Identify the vital few causes
+
+Analyse des 5 Pourquoi: Discover root causes
+
+Histogramme: Visualize data distribution
+
+Analyse de corrélation: Analyze relationships between variables
+
+Diagramme d'Ishikawa: Map cause-effect relationships
+
+Analyse SWOT: Evaluate strengths, weaknesses, opportunities, and threats
+
+Analyse QQOQCCP: Comprehensive problem analysis framework
+
+Organigramme: Document process flows
+
+Quality Management Fundamentals
+
+Quality management is a systematic approach to ensuring products and services meet customer expectations and organizational standards. This module covers core quality concepts and foundational principles.
+
+Definition of Quality
+
+
+
+What is Quality?
+
+Quality can be defined as the degree to which a product or service meets or exceeds customer expectations. It encompasses various attributes:
+
+
+
+Fitness for purpose: Does the product do what it's supposed to do?
+
+Reliability: Does it perform consistently over time?
+
+Durability: How long does it last?
+
+Conformance to specifications: Does it meet design requirements?
+
+Perceived quality: How do customers view the product?
+
+Understanding Different Problem Types
+
+Not all problems are created equal. Understanding the type of problem you're facing helps select the right approach:
+
+
+
+Simple Problems
+
+Characteristics: Clear cause-effect relationships, predictable outcomes
+
+Example: A machine consistently jams at the same point
+
+Approach: Direct troubleshooting, standard procedures
+
+Complicated Problems
+
+Characteristics: Multiple variables, requires expertise, cause-effect relationships can be determined
+
+Example: Declining product quality with multiple potential causes
+
+Approach: Analytical tools, expert assessment, root cause analysis
+
+Complex Problems
+
+Characteristics: Emergent patterns, unpredictable outcomes, interacting factors
+
+Example: Implementing a new corporate culture, market adoption of a new product
+
+Approach: Iterative experimentation, systems thinking, adaptive management
+
+the "knowledge check" section
+
+every modules file (correlation five whys flowchart ihistogram ishikawa knowledge check learning pareto qqoqccp swot)
+

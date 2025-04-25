@@ -1,0 +1,149 @@
+Product Requirements Document (PRD)
+Quality Tools WebApp
+
+1. Introduction
+Overview
+This PRD outlines the development of an interactive web application designed to teach and apply quality management and problem-solving tools (as described in the provided PDFs). The app will:
+
+Educate users on key quality methodologies (Pareto, Ishikawa, 5 Whys, etc.).
+
+Enable hands-on practice with interactive tools.
+
+Support data export for further analysis.
+
+Goals
+Learning: Simplify complex quality concepts with structured courses.
+
+Practicality: Provide real-world applications with sample datasets.
+
+Flexibility: Allow data import/export and customization.
+
+Target Users
+Students (quality management, engineering).
+
+Professionals (QA, operations, continuous improvement).
+
+2. Core Features
+2.1. Learning Modules
+Content Structure:
+
+Quality Fundamentals
+
+Definition, history (Kano model, quality evolution).
+
+Problem types (simple, complicated, complex).
+
+DQRP (7-step problem-solving method).
+
+Basic Tools
+
+Pareto Chart: 80/20 rule, defect analysis.
+
+Histogram: Data distribution visualization.
+
+Ishikawa Diagram: Root cause analysis (5M framework).
+
+5 Whys: Drill-down to root causes.
+
+Flowchart: Process mapping.
+
+Advanced Tools
+
+Decision matrices, force field analysis, SWOT.
+
+Format:
+
+Text + visual aids (e.g., drag-and-drop Ishikawa builder).
+
+Embedded quizzes (e.g., "Which tool best fits this scenario?").
+
+2.2. Interactive Tools
+MVP (V1):
+
+Pareto Chart: Upload data → auto-generate chart highlighting top 20% issues.
+
+5 Whys: Interactive tree builder (add/remove "Why" levels).
+
+Histogram: Input data bins → visualize distribution.
+
+V2 Enhancements:
+
+Correlation Tool: Scatter plots from CSV data.
+
+Flowchart Designer: Drag-and-drop process mapping.
+
+Data Validation: Alerts for invalid inputs (e.g., insufficient data points).
+
+2.3. Data Export
+Formats:
+
+CSV (for Excel/Power BI).
+
+PNG/PDF (for reports).
+
+Customization: Chart titles, colors, axis labels.
+
+2.4. Error Handling
+Clear Messaging:
+
+"Minimum 5 data points required for a valid histogram."
+
+"CSV must include ‘Frequency’ column."
+
+Tooltips: "i" icons explaining input requirements.
+
+3. Use Cases
+3.1. Pareto Analysis
+Scenario: A logistics manager analyzes delivery delays.
+Steps:
+
+Upload Supplier_Delays.csv.
+
+App generates Pareto chart identifying top delay causes.
+
+Export as PDF for stakeholder review.
+
+3.2. 5 Whys
+Scenario: Diagnosing a production line stoppage.
+Steps:
+
+Enter problem: "Machine stopped."
+
+Add layers:
+
+Why? → Overheating.
+
+Why? → Failed coolant pump.
+
+...
+
+Export tree diagram for team discussion.
+
+4. Roadmap
+Version	Features
+V1 (MVP)	Pareto, Histogram, 5 Whys, CSV/PNG export
+V2	Ishikawa, Flowchart, data validation
+V3	Decision matrices, API integrations (Google Sheets)
+5. Technical Agnosticism
+Frontend: Framework-agnostic (React/Vue/Svelte).
+
+Backend: Any server (Node.js/Python/Go).
+
+Charts: Library-agnostic (D3.js/Chart.js/Plotly).
+
+6. Success Metrics
+Engagement: Avg. time spent on tool exercises.
+
+Adoption: # of exports/user/month.
+
+Feedback: User ratings on content clarity.
+
+Appendix: Wireframes available upon request.
+
+Note to Replit Agent:
+
+Stack-agnostic: Prioritize functionality over specific tech.
+
+Scalability: Ensure modular design for future tool additions.
+
+Accessibility: WCAG-compliant UI (keyboard nav, alt text).

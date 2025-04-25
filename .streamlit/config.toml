@@ -2,14 +2,9 @@
 headless = true
 port = 8501
 enableCORS = false
-enableXsrfProtection = false
 
 [client]
 showSidebarNavigation = true
-showErrorDetails = false
 
 [theme]
-base = "light"
-
-[ui]
-hideTopBar = false
+base="system"  # <-- IMPORTANT! this respects user's OS

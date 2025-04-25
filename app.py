@@ -22,9 +22,9 @@ from utils.translation import initialize_translation
 st.set_page_config(
     page_title="Outils Qualité",
     page_icon="📊",
-    layout="wide",
+    layout="centered",
     menu_items={
-        'About': """
+        'A propos': """
         © 2025 Étudiant M1 Mécanique, Université de Lorraine
 
         Technologies utilisées : Python, Streamlit, Plotly, Pandas

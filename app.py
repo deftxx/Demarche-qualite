@@ -32,13 +32,12 @@ st.set_page_config(
     }
 )
 
-# 🔒 Hide GitHub "View Source" link, Streamlit Profile link, and Footer
-# Correct CSS to hide only GitHub/Profile links
+
 st.markdown(
     """
     <style>
     a[href*="github.com"] {display: none;}
-    a[href*="streamlit.io"] {display: none;}
+    a[href*="https://streamlit.io/"] {display: none;}
     footer {visibility: hidden;}
     </style>
     """,

@@ -20,7 +20,7 @@ from utils.translation import initialize_translation
 
 # ✅ MUST BE FIRST Streamlit command
 st.set_page_config(
-    page_title="Outils Qualité",
+    page_title="Demarches Qualité",
     page_icon="📊",
     layout="centered",
     menu_items={

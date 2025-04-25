@@ -36,13 +36,13 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
-    header {visibility: hidden;}
+    .stDeployButton {display: none;}
     </style>
     """,
     unsafe_allow_html=True
 )
+
 
 
 # 🌐 Initialize translation

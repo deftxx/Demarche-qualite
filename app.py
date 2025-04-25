@@ -12,24 +12,36 @@ from modules.qqoqccp import qqoqccp_tool
 from modules.correlation import correlation_tool
 from utils.translation import initialize_translation
 
-# Configuration de la page
+# 🔒 Hide GitHub link, footer, and Streamlit branding
+st.markdown(
+    """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# 🧭 Page configuration
 st.set_page_config(
     page_title="Outils Qualité",
     page_icon="📊",
-    layout="centered",
+    layout="wide",  # was "centered", changed for better visual space
     menu_items={
         'About': """
-        © 2025 Étudiant M1 Mécanique, Université de Lorraine 
+        © 2025 Étudiant M1 Mécanique, Université de Lorraine
 
         Technologies utilisées : Python, Streamlit, Plotly, Pandas
         """
     }
 )
 
-# Initialisation de la traduction
+# 🌐 Initialize translation
 initialize_translation()
 
-# Raccourci pour la fonction de traduction
+# Translation shortcut
 _ = st.session_state.translate
 
 st.sidebar.markdown("---")
@@ -40,13 +52,14 @@ st.sidebar.info(
       "**Démarche Qualité de Résolution de Problèmes**.")
 )
 st.sidebar.markdown("---")
-# Navigation principale
+
+# Main navigation
 app_mode = st.sidebar.selectbox(
     _("Sélectionner la section"),
     [_("Accueil"), _("Ressources d’apprentissage"), _("Outils Qualité")]
 )
 
-# Catégories d’outils
+# Tool categories
 tool_categories = {
     _("Outils de base"): [_("Diagramme de Pareto"),
                          _("Histogramme"),
@@ -57,43 +70,37 @@ tool_categories = {
     _("Outils avancés"): [_("Analyse SWOT"), _("Analyse QQOQCCP")]
 }
 
-# Initialisation pour éviter l’erreur « possibly unbound »
 tool_type = ""
 
-# Sous‑navigation pour les outils
+# Tool sub-navigation
 if app_mode == _("Outils Qualité"):
-    # Choix de la catégorie
     tool_category = st.sidebar.selectbox(
         _("Sélectionner la catégorie d’outil"),
         list(tool_categories.keys()),
         key="tool_category"
     )
 
-    # Suivi du précédent outil
     if 'previous_tool' not in st.session_state:
         st.session_state.previous_tool = ""
 
-    # Choix de l’outil précis
     tool_type = st.sidebar.selectbox(
         _("Sélectionner l’outil"),
         tool_categories[tool_category],
         key="tool_selection"
     )
 
-    # Réinitialiser les onglets lors d’un changement d’outil
     if st.session_state.previous_tool != tool_type:
         for key in list(st.session_state.keys()):
             if key.endswith("_tab_index"):
                 del st.session_state[key]
         st.session_state.previous_tool = tool_type
 
-# Affichage du contenu selon la navigation
+# Main content rendering
 if app_mode == _("Accueil"):
     st.title(_("Outils Qualité"))
 
     st.markdown(_("Cette application vous aide à apprendre et appliquer des outils de gestion de la qualité et de résolution de problèmes."))
 
-    # Section Fonctionnalités
     with st.expander(_("Fonctionnalités"), expanded=False):
         st.markdown(_("""\
         - **Outils qualité sélectionnés** : collection d’outils essentiels pour l’analyse et l’amélioration
@@ -103,7 +110,6 @@ if app_mode == _("Accueil"):
         - **Options d’export** : enregistrez vos analyses dans divers formats
         """))
 
-    # Section Prise en main
     with st.expander(_("Prise en main"), expanded=False):
         st.markdown(_("""\
         1. Rendez‑vous dans **Ressources d’apprentissage** pour découvrir les concepts clés
@@ -113,7 +119,6 @@ if app_mode == _("Accueil"):
         5. Exportez vos résultats pour vos présentations et rapports
         """))
 
-    # Section Outils vedettes
     with st.expander(_("Outils vedettes"), expanded=False):
         col1, col2 = st.columns(2)
 
@@ -165,7 +170,7 @@ elif app_mode == _("Outils Qualité"):
     elif "qqoqccp" in tool_type_lower or "5w2h" in tool_type_lower:
         qqoqccp_tool()
 
-# Aide de navigation
+# Sidebar navigation guide
 if app_mode == _("Outils Qualité"):
     st.sidebar.markdown("---")
     st.sidebar.info(
@@ -177,7 +182,7 @@ if app_mode == _("Outils Qualité"):
         f"{_('Chaque outil inclut un exemple de données pour démarrer rapidement.')}"
     )
 
-# Pied de page
+# Footer
 st.sidebar.markdown("---")
 st.sidebar.info(
     _("Cette application est conçue pour enseigner et appliquer les outils de gestion de la qualité. "

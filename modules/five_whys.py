@@ -8,7 +8,34 @@ from utils.export import export_as_png, export_as_pdf, export_as_csv
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Création du diagramme
+# Helper function: Vertical layout for tree structure
+# ─────────────────────────────────────────────────────────────────────────────
+def hierarchy_pos(G, root=None, width=1., vert_gap=0.2, vert_loc=0, xcenter=0.5):
+    '''
+    Custom hierarchy position for a tree layout.
+    '''
+    pos = {}
+    if root is None:
+        root = next(iter(nx.topological_sort(G)))  # assumes G is a DAG
+
+    def _hierarchy_pos(G, root, left, right, vert_loc, xcenter, pos, parent=None):
+        children = list(G.successors(root))
+        if not isinstance(children, list) or len(children) == 0:
+            pos[root] = (xcenter, vert_loc)
+        else:
+            dx = (right - left) / len(children)
+            nextx = left + dx / 2
+            for child in children:
+                pos = _hierarchy_pos(G, child, nextx - dx/2, nextx + dx/2, vert_loc - vert_gap, nextx, pos, root)
+                nextx += dx
+            pos[root] = (xcenter, vert_loc)
+        return pos
+
+    return _hierarchy_pos(G, root, 0, width, vert_loc, xcenter, pos)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Create the 5 Why diagram
 # ─────────────────────────────────────────────────────────────────────────────
 def create_5why_diagram(problem, whys, root_cause=None, action=None):
     """Retourne une figure Matplotlib représentant la chaîne 5 Pourquoi."""
@@ -36,7 +63,7 @@ def create_5why_diagram(problem, whys, root_cause=None, action=None):
             G.add_edge(node_id, act_id)
 
     fig, ax = plt.subplots(figsize=(12, 8))
-    pos = nx.spring_layout(G, seed=42)
+    pos = hierarchy_pos(G)  # <-- ✅ Use custom hierarchy layout here
     labels = nx.get_node_attributes(G, "label")
     types = nx.get_node_attributes(G, "node_type")
 
@@ -74,7 +101,7 @@ def create_5why_diagram(problem, whys, root_cause=None, action=None):
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Outil Streamlit
+# Streamlit 5 Whys Tool
 # ─────────────────────────────────────────────────────────────────────────────
 def five_whys_tool():
     """Outil interactif : méthode des 5 Pourquoi en français."""
@@ -124,16 +151,14 @@ def five_whys_tool():
             horizontal=True,
         )
 
-        # ======== DONNÉES D'EXEMPLE (lecture seule) ========
         if data_source == "Données d'exemple":
             st.session_state.current_problem = st.session_state.demo_5whys_problem
             st.session_state.current_root_cause = st.session_state.demo_5whys_root_cause
             st.session_state.current_action = st.session_state.demo_5whys_recommended_action
-            st.session_state.why_levels = [lvl[:] for lvl in st.session_state.demo_5whys_levels]  # copie profonde
+            st.session_state.why_levels = [lvl[:] for lvl in st.session_state.demo_5whys_levels]
 
             st.info(f"**Problème :** {st.session_state.current_problem}")
 
-        # ======== SAISIE MANUELLE ========
         else:
             col1, col2 = st.columns(2)
             with col1:
@@ -156,15 +181,13 @@ def five_whys_tool():
             if "why_levels" not in st.session_state or data_source == "Saisie manuelle":
                 st.session_state.why_levels = [[""], [""], [""], [""], [""]]
 
-        # ---------- Fonctions internes (ajout / retrait de pourquoi) -------------
-        def add_why(level):  # noqa: D401
+        def add_why(level):
             st.session_state.why_levels[level].append("")
 
         def remove_why(level, idx):
             if len(st.session_state.why_levels[level]) > 1:
                 st.session_state.why_levels[level].pop(idx)
 
-        # ---------- Affichage des niveaux Pourquoi ------------------------------
         st.markdown("### Étape 2 : Chaîne des Pourquoi")
 
         if data_source == "Données d'exemple":
@@ -192,18 +215,6 @@ def five_whys_tool():
                         with c3:
                             if st.button("➖", key=f"rem_{lvl}_{i}"):
                                 remove_why(lvl, i); st.rerun()
-                # aide contexte (non modifiable)
-                captions = [
-                    "Causes directes",
-                    "Facteurs sous‑jacents",
-                    "Problèmes systémiques profonds",
-                    "Facteurs organisationnels",
-                    "Causes fondamentales",
-                ]
-                st.caption(captions[lvl])
-
-        if data_source == "Saisie manuelle":
-            st.success("Données saisies. Passez à l'onglet « Visualisation ».")
 
     # ───────────────────── Onglet 2 : Visualisation ─────────────────────
     with tab2:

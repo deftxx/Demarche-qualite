@@ -36,7 +36,7 @@ def create_5why_diagram(problem, whys, root_cause=None, action=None):
             G.add_edge(node_id, act_id)
 
     fig, ax = plt.subplots(figsize=(12, 8))
-    pos = nx.nx_agraph.graphviz_layout(G, prog="dot")
+    pos = nx.spring_layout(G, seed=42)
     labels = nx.get_node_attributes(G, "label")
     types = nx.get_node_attributes(G, "node_type")
 

@@ -56,8 +56,7 @@ _ = st.session_state.translate
 st.sidebar.markdown("---")
 
 st.sidebar.info(
-    _("Projet réalisé par les étudiants M1 Mécanique : Adim Hachim, Bamoh Abdellah, "
-      "Nerhaioui Mohamed, Laaraich Hamza, dans le cadre du cours "
+    _("Projet réalisé par les étudiants M1 Mécanique dans le cadre du cours "
       "**Démarche Qualité de Résolution de Problèmes**.")
 )
 st.sidebar.markdown("---")
